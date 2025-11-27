@@ -1,0 +1,49 @@
+# --- Node ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+yarn.lock
+
+# --- Environment Files ---
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# --- Logs ---
+logs/
+*.log
+*.log.*
+debug.log
+error.log
+
+# --- Build Output / Compiled Files ---
+dist/
+build/
+coverage/
+.cache/
+
+# --- Uploads / Temporary Files ---
+uploads/
+tmp/
+temp/
+
+# --- System Files ---
+.DS_Store
+Thumbs.db
+
+# --- IDE / Editor ---
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# --- Git ---
+.git/
