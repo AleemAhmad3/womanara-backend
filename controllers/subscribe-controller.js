@@ -1,5 +1,5 @@
 
-const Leads = require("../models/lead-model");
+const Subscribers = require("../models/subscribe-model");
 const sendEmailToCompany = require("../utils/email-verfication");
 
 const createSubscriber = async (req, res) => {
@@ -21,14 +21,14 @@ const createSubscriber = async (req, res) => {
   }
 
   try {
-    const LeadsCreated = await Leads.create({
+    const SubscribersCreated = await Subscribers.create({
       email,
     });
 
     // Send notification email
     // sendEmailToCompany({ email, name, phone, subject, message }, res);
 
-    if (!LeadsCreated) {
+    if (!SubscribersCreated) {
       return res.status(500).json({
         status: 500,
         message: "Failed to subscribed",
@@ -52,9 +52,9 @@ const subscriberList = async (req, res) => {
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
 
-    const totalLeads = await Leads.countDocuments();
+    const totalSubscribers = await Subscribers.countDocuments();
 
-    const leads = await Leads.find()
+    const Subscribers = await Subscribers.find()
       .sort({ createdAt: -1 })
       .limit(limit)
       .skip((page - 1) * limit);
@@ -62,9 +62,9 @@ const subscriberList = async (req, res) => {
     return res.status(200).json({
       status: 200,
       message: "Subscribers fetched successfully",
-      leads,
-      totalLeads,
-      totalPages: Math.ceil(totalLeads / limit), // Fixed typo
+      Subscribers,
+      totalSubscribers,
+      totalPages: Math.ceil(totalSubscribers / limit), // Fixed typo
       currentPage: page,
       limit,
     });
@@ -81,7 +81,7 @@ const GetSubscriberById = async (req, res) => {
   try {
     const { id } = req.params; // Get lead ID from request parameters
 
-    const lead = await Leads.findById(id);
+    const lead = await Subscribers.findById(id);
 
     if (!lead) {
       return res.status(404).json({
@@ -112,24 +112,24 @@ const DeleteSubscriber = async (req, res) => {
       return res.status(400).json({status: 400, message: "Invalid request. Provide Subscriber IDs." });
     }
 
-    // ✅ Check if leads exist before deleting
-    const existingLeads = await Leads.find({ _id: { $in: ids } });
+    // ✅ Check if Subscribers exist before deleting
+    const existingSubscribers = await Subscribers.find({ _id: { $in: ids } });
 
-    if (existingLeads.length === 0) {
+    if (existingSubscribers.length === 0) {
       return res.status(404).json({status: 400, message: "No subscriber found with the given IDs." });
     }
 
-    // ✅ Delete leads
-    await Leads.deleteMany({ _id: { $in: ids } });
+    // ✅ Delete Subscribers
+    await Subscribers.deleteMany({ _id: { $in: ids } });
 
     res.status(200).json({
       status: 200,
       message: "Subscribers deleted successfully.",
-      deletedLeads: ids
+      deletedSubscribers: ids
     });
 
   } catch (error) {
-    console.error("Error deleting leads:", error);
+    console.error("Error deleting Subscribers:", error);
     res.status(500).json({ message: "Internal server error", error: error.message });
   }
 };
