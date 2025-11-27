@@ -54,7 +54,7 @@ const subscriberList = async (req, res) => {
 
     const totalSubscribers = await Subscribers.countDocuments();
 
-    const Subscribers = await Subscribers.find()
+    const subscribers = await Subscribers.find()
       .sort({ createdAt: -1 })
       .limit(limit)
       .skip((page - 1) * limit);
@@ -62,12 +62,13 @@ const subscriberList = async (req, res) => {
     return res.status(200).json({
       status: 200,
       message: "Subscribers fetched successfully",
-      Subscribers,
+      subscribers,
       totalSubscribers,
-      totalPages: Math.ceil(totalSubscribers / limit), // Fixed typo
+      totalPages: Math.ceil(totalSubscribers / limit),
       currentPage: page,
       limit,
     });
+
   } catch (err) {
     console.error(err);
     return res.status(500).json({
@@ -76,6 +77,7 @@ const subscriberList = async (req, res) => {
     });
   }
 };
+
 
 const GetSubscriberById = async (req, res) => {
   try {
