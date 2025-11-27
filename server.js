@@ -10,6 +10,9 @@ const port = process.env.PORT || 5000;
 //  Allowed Origins
 const allowedOrigins = [
   "http://localhost:5173",
+  "http://localhost:3000",
+  "http://localhost:3001",
+  "https://womanarafoundation.org/"
 ];
 
 //  Apply CORS Middleware Before Routes
