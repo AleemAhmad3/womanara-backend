@@ -14,7 +14,9 @@ const allowedOrigins = [
   "http://localhost:3000",
   "http://localhost:3001",
   "https://womanarafoundation.org",
-  "https://womanarafoundation.org/"
+  "https://womanarafoundation.org/",
+  "https://admin.womanarafoundation.org",
+  "https://admin.womanarafoundation.org/"
 ];
 
 //  Apply CORS Middleware Before Routes
