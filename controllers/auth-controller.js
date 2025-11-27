@@ -10,7 +10,7 @@ const login = async (req, res) => {
     }
 
     // FIXED LOGIN CREDENTIALS
-    const FIXED_EMAIL = "admin@example.com";
+    const FIXED_EMAIL = "admin@gmail.com";
     const FIXED_PASSWORD = "qwerty";
 
     // Check credentials
