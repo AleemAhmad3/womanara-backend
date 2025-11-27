@@ -5,6 +5,7 @@ const connectDB = require("./config/db");
 const leadRouter = require("./routes/lead-routes");
 const cors = require("cors");
 const subscrieRouter = require("./routes/subscribe-route");
+const authRouter = require("./routes/auth-route");
 
 const port = process.env.PORT || 5000;
 //  Allowed Origins
@@ -38,6 +39,7 @@ app.use(express.json());
 
 app.use("/api", leadRouter);
 app.use("/api", subscrieRouter);
+app.use("/api", authRouter);
 
 connectDB().then(() => {
   app.listen(port, () => {
