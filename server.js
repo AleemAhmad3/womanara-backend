@@ -7,7 +7,7 @@ const cors = require("cors");
 const subscrieRouter = require("./routes/subscribe-route");
 const authRouter = require("./routes/auth-route");
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5035;
 //  Allowed Origins
 const allowedOrigins = [
   "http://localhost:5173",
